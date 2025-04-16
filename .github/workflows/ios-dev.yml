@@ -15,7 +15,7 @@ jobs:
             - name: 📦 Checkout code
               uses: actions/checkout@v4
 
-            - name: 🔧 Setup Xcode 15.4
+            - name: 🔧 Setup Xcode 16.2
               uses: maxim-lobanov/setup-xcode@v1
               with:
                   xcode-version: "16.2"
@@ -52,13 +52,13 @@ jobs:
                   chmod 600 ~/.ssh/id_rsa
                   ssh-keyscan github.com >> ~/.ssh/known_hosts
 
-            - name: 🔑 Setup certificates (Match)
+            - name: 🔑 Setup certificates and provisioning profiles
               run: bundle exec fastlane ci_setup
               env:
                   MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
                   FASTLANE_USER: ${{ secrets.FASTLANE_USER }}
-                  APP_STORE_CONNECT_TEAM_ID: ${{ secrets.DEVELOPER_PORTAL_TEAM_ID }}
                   FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
+                  APP_STORE_CONNECT_TEAM_ID: ${{ secrets.APP_STORE_CONNECT_TEAM_ID }}
 
             - name: 🧪 Run Tests
               run: bundle exec fastlane ci_tests
@@ -66,15 +66,12 @@ jobs:
                   MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
                   FASTLANE_USER: ${{ secrets.FASTLANE_USER }}
                   FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
-                  APP_STORE_CONNECT_TEAM_ID: ${{ secrets.DEVELOPER_PORTAL_TEAM_ID }}
-
-            - name: Setup certificates and provisioning profiles
-              run: bundle exec fastlane ci_setup
-              env:
-                  MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
-                  FASTLANE_USER: ${{ secrets.APPLE_ID }}
-                  FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ secrets.APP_SPECIFIC_PASSWORD }}
                   APP_STORE_CONNECT_TEAM_ID: ${{ secrets.APP_STORE_CONNECT_TEAM_ID }}
 
-            - name: Build app
+            - name: 🏗️ Build app
               run: bundle exec fastlane dev_build
+              env:
+                  MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+                  FASTLANE_USER: ${{ secrets.FASTLANE_USER }}
+                  FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
+                  APP_STORE_CONNECT_TEAM_ID: ${{ secrets.APP_STORE_CONNECT_TEAM_ID }}
