@@ -6,6 +6,7 @@ on:
         branches: [develop]
     pull_request:
         branches: [develop]
+
 jobs:
     build-and-test:
         runs-on: macos-14
@@ -14,29 +15,63 @@ jobs:
             - name: 📦 Checkout code
               uses: actions/checkout@v4
 
-            - name: 🛠️ Setup Xcode 15.4
+            - name: 🔧 Setup Xcode 15.4
               uses: maxim-lobanov/setup-xcode@v1
               with:
                   xcode-version: "15.4"
 
-            - name: ✅ Enable file system synchronized groups
+            - name: ✅ Enable support for synchronized file groups
               run: echo 'IDEFileSystemSynchronizedGroupsAreEnabled=YES' >> $GITHUB_ENV
 
-            - name: 🔧 Install Ruby & Fastlane
-              run: |
-                  gem install bundler
-                  bundle install
+            - name: 📂 Cache Swift Packages
+              uses: actions/cache@v3
+              with:
+                  path: |
+                      ~/Library/Developer/Xcode/DerivedData
+                      ~/Library/Caches/org.swift.swiftpm
+                  key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
+                  restore-keys: |
+                      ${{ runner.os }}-spm-
 
-            - name: 🔐 Setup CI certificates
+            - name: 🍎 Set up Ruby
+              uses: ruby/setup-ruby@v1
+              with:
+                  ruby-version: 3.1
+
+            - name: 🔧 Install dependencies
+              run: |
+                  gem update --system
+                  gem install bundler
+                  bundle install || bundle update
+                  bundle exec fastlane --version
+
+            - name: 🔐 Setup SSH for match repo
+              run: |
+                  mkdir -p ~/.ssh
+                  echo "${{ secrets.MATCH_GIT_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+                  chmod 600 ~/.ssh/id_rsa
+                  ssh-keyscan github.com >> ~/.ssh/known_hosts
+
+            - name: 🔑 Setup certificates (Match)
               run: bundle exec fastlane ci_setup
+              env:
+                  MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+                  FASTLANE_USER: ${{ secrets.FASTLANE_USER }}
+                  APP_STORE_CONNECT_TEAM_ID: ${{ secrets.DEVELOPER_PORTAL_TEAM_ID }}
+                  FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
+
+            - name: 🧪 Run Tests
+              run: |
+                  export RUBY_THREAD_VM_STACK_SIZE=1048576
+                  bundle exec fastlane ci_tests --verbose
               env:
                   MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
                   FASTLANE_USER: ${{ secrets.FASTLANE_USER }}
                   FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
                   APP_STORE_CONNECT_TEAM_ID: ${{ secrets.DEVELOPER_PORTAL_TEAM_ID }}
 
-            - name: 🧪 Run tests
-              run: bundle exec fastlane ci_tests
+            - name: 📆 Build Dev IPA
+              run: bundle exec fastlane dev_build
               env:
                   MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
                   FASTLANE_USER: ${{ secrets.FASTLANE_USER }}
