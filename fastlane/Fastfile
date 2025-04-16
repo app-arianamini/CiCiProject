@@ -7,7 +7,7 @@ platform :ios do
   lane :ci_tests do
     run_tests(
       scheme: "CiCdProjekt",
-      testplan: "CiCdProject.xctestplan",
+      testplan: "CiCdProjekt.xctestplan",
       devices: ["iPhone 14"]
     )
   end
