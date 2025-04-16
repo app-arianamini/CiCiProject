@@ -1,0 +1,31 @@
+{
+  "configurations" : [
+    {
+      "id" : "D2632EDC-2B91-4669-A826-2376542ED7D8",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:CiCdProjekt.xcodeproj",
+        "identifier" : "9D5A47EE2DAF871C0058CFB5",
+        "name" : "CiCdProjektTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:CiCdProjekt.xcodeproj",
+        "identifier" : "9D5A47F82DAF871C0058CFB5",
+        "name" : "CiCdProjektUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
