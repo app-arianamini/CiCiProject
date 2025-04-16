@@ -1,0 +1,8 @@
+app_identifier("de.arianamini.test.CiCdProjekt") # The bundle identifier of your app
+apple_id("ariannozari@yahoo.de") # Your Apple Developer Portal username
+
+itc_team_id("119352069") # App Store Connect Team ID
+team_id("56Q549J6X8") # Developer Portal Team ID
+
+# For more information about the Appfile, see:
+#     https://docs.fastlane.tools/advanced/#appfile
