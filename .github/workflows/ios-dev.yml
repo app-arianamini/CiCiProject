@@ -60,6 +60,14 @@ jobs:
                   FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
                   APP_STORE_CONNECT_TEAM_ID: ${{ secrets.APP_STORE_CONNECT_TEAM_ID }}
 
+            - name: 🔍 Debug env
+              run: |
+                  echo "FASTLANE_USER=${{ secrets.FASTLANE_USER }}"
+                  echo "APP_STORE_CONNECT_TEAM_ID=${{ secrets.APP_STORE_CONNECT_TEAM_ID }}"
+
+            - name: 🔍 Show installed profiles
+              run: ls -R ~/Library/MobileDevice/Provisioning\ Profiles
+
             - name: 🧪 Run Tests
               run: bundle exec fastlane ci_tests
               env:

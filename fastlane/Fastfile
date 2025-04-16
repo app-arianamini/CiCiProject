@@ -15,7 +15,13 @@ platform :ios do
   lane :dev_build do
     build_app(
       scheme: "CiCdProjekt",
-      export_method: "development"
+      export_method: "development",
+      export_options: {
+        provisioningProfiles: {
+          "de.arianamini.test.CiCdProjekt" => "match Development de.arianamini.test.CiCdProjekt"
+        }
+      },
+      xcargs: "-allowProvisioningUpdates"
     )
   end
 
