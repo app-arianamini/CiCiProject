@@ -16,23 +16,31 @@
 default_platform(:ios)
 
 platform :ios do
-  desc "Build and run tests"
+  desc "Run unit & UI tests using xctestplan"
   lane :test do
+    match(type: "development")
     run_tests(
       scheme: "CiCdProjekt",
-      devices: ["iPhone 14"],
-      test_plan: "CiCdProject.xctestplan"
+      test_plan: "CiCdProject.xctestplan",
+      devices: ["iPhone 14"]
     )
   end
   
   desc "Build and archive for App Store"
   lane :build do
-    build_app(scheme: "CiCdProjekt")
+    match(type: "appstore")
+    build_app(
+      scheme: "CiCdProjekt",
+      export_method: "app-store"
+    )
   end
   
-  desc "development"
+  desc "Development build for internal testing"
   lane :dev_build do
-      match(type: "development")
-      build_app(scheme: "CiCdProjekt")
+    match(type: "development")
+    build_app(
+      scheme: "CiCdProjekt",
+      export_method: "development"
+    )
   end
 end

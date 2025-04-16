@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		9D5A48122DAFA4CA0058CFB5 /* FlagAndCountryCode in Frameworks */ = {isa = PBXBuildFile; productRef = 9D5A48112DAFA4CA0058CFB5 /* FlagAndCountryCode */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		9D5A47F02DAF871C0058CFB5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D5A48122DAFA4CA0058CFB5 /* FlagAndCountryCode in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +83,7 @@
 				9D5A47E42DAF87190058CFB5 /* CiCdProjekt */,
 				9D5A47F22DAF871C0058CFB5 /* CiCdProjektTests */,
 				9D5A47FC2DAF871C0058CFB5 /* CiCdProjektUITests */,
+				9D5A48102DAFA4CA0058CFB5 /* Frameworks */,
 				9D5A47E32DAF87190058CFB5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -90,6 +96,13 @@
 				9D5A47F92DAF871C0058CFB5 /* CiCdProjektUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		9D5A48102DAFA4CA0058CFB5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -112,6 +125,7 @@
 			);
 			name = CiCdProjekt;
 			packageProductDependencies = (
+				9D5A48112DAFA4CA0058CFB5 /* FlagAndCountryCode */,
 			);
 			productName = CiCdProjekt;
 			productReference = 9D5A47E22DAF87190058CFB5 /* CiCdProjekt.app */;
@@ -195,6 +209,9 @@
 			);
 			mainGroup = 9D5A47D92DAF87190058CFB5;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				9D5A480F2DAFA4330058CFB5 /* XCRemoteSwiftPackageReference "FlagAndCountryCode" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 9D5A47E32DAF87190058CFB5 /* Products */;
 			projectDirPath = "";
@@ -558,6 +575,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9D5A480F2DAFA4330058CFB5 /* XCRemoteSwiftPackageReference "FlagAndCountryCode" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/FlagAndCountryCode.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9D5A48112DAFA4CA0058CFB5 /* FlagAndCountryCode */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9D5A480F2DAFA4330058CFB5 /* XCRemoteSwiftPackageReference "FlagAndCountryCode" */;
+			productName = FlagAndCountryCode;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9D5A47DA2DAF87190058CFB5 /* Project object */;
 }

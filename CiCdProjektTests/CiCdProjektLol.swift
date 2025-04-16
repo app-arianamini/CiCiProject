@@ -13,5 +13,4 @@ struct CiCdProjektLol {
     @Test func example() async throws {
 		#expect(true)
     }
-
 }

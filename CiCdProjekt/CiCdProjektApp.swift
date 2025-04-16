@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FlagAndCountryCode
 
 @main
 struct CiCdProjektApp: App {
