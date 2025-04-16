@@ -45,7 +45,7 @@ jobs:
                   ssh-keyscan github.com >> ~/.ssh/known_hosts
 
             - name: 🔑 Setup certificates (Match)
-              run: bundle exec fastlane setup_ci
+              run: bundle exec fastlane ci_setup
               env:
                   MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
                   FASTLANE_USER: ${{ secrets.FASTLANE_USER }}
