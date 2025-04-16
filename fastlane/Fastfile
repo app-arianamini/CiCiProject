@@ -8,7 +8,7 @@ platform :ios do
     run_tests(
       scheme: "CiCdProjekt",
       testplan: "CiCdProjekt.xctestplan",
-      devices: ["iPhone 14"]
+      devices: ["iPhone 16"]
     )
   end
 
