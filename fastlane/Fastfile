@@ -1,7 +1,9 @@
+# Fastfile
+
 default_platform(:ios)
 
 platform :ios do
-  desc "Resolve and run tests"
+  desc "Run unit & UI tests using xctestplan"
   lane :run_tests do
     run_tests(
       scheme: "CiCdProjekt",
@@ -10,7 +12,7 @@ platform :ios do
     )
   end
 
-  desc "Build dev"
+  desc "Build and archive for development"
   lane :dev_build do
     build_app(
       scheme: "CiCdProjekt",
@@ -18,7 +20,7 @@ platform :ios do
     )
   end
 
-  desc "Setup CI Certificates"
+  desc "Setup match certificates for CI"
   lane :setup_ci do
     match(
       type: "development",

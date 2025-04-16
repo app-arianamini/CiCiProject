@@ -1,3 +1,4 @@
+# .github/workflows/ios.yml
 name: iOS Build & Test (Develop)
 
 on:
@@ -14,7 +15,7 @@ jobs:
             - name: 📦 Checkout code
               uses: actions/checkout@v4
 
-            - name: 💾 Cache Swift Packages
+            - name: 📂 Cache Swift Packages
               uses: actions/cache@v3
               with:
                   path: |
@@ -31,6 +32,7 @@ jobs:
 
             - name: 🔧 Install dependencies
               run: |
+                  gem update --system
                   gem install bundler
                   bundle install || bundle update
                   bundle exec fastlane --version
@@ -51,7 +53,19 @@ jobs:
                   FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
 
             - name: 🧪 Run Tests
-              run: bundle exec fastlane run_tests
+              run: |
+                  export RUBY_THREAD_VM_STACK_SIZE=1048576
+                  bundle exec fastlane run_tests --verbose
+              env:
+                  MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+                  FASTLANE_USER: ${{ secrets.FASTLANE_USER }}
+                  APP_STORE_CONNECT_TEAM_ID: ${{ secrets.DEVELOPER_PORTAL_TEAM_ID }}
+                  FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
 
-            - name: 📦 Build Dev IPA
+            - name: 📆 Build Dev IPA
               run: bundle exec fastlane dev_build
+              env:
+                  MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+                  FASTLANE_USER: ${{ secrets.FASTLANE_USER }}
+                  APP_STORE_CONNECT_TEAM_ID: ${{ secrets.DEVELOPER_PORTAL_TEAM_ID }}
+                  FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
