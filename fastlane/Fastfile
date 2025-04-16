@@ -18,7 +18,7 @@ default_platform(:ios)
 platform :ios do
   desc "Run unit & UI tests using xctestplan"
   lane :run_tests do
-    match(type: "development")
+    match(type: "development", readonly: true)
     run_tests(
       scheme: "CiCdProjekt",
       test_plan: "CiCdProject.xctestplan",
@@ -28,7 +28,7 @@ platform :ios do
   
   desc "Build and archive for App Store"
   lane :build do
-    match(type: "appstore")
+    match(type: "appstore", readonly: true)
     build_app(
       scheme: "CiCdProjekt",
       export_method: "app-store"
@@ -37,7 +37,7 @@ platform :ios do
   
   desc "Development build for internal testing"
   lane :dev_build do
-    match(type: "development")
+    match(type: "development", readonly: true)
     build_app(
       scheme: "CiCdProjekt",
       export_method: "development"
