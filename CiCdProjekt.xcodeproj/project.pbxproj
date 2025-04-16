@@ -28,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9D4CC2962DAFF34E009ACEFE /* CiCdProjekt.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = CiCdProjekt.xctestplan; sourceTree = "<group>"; };
 		9D5A47E22DAF87190058CFB5 /* CiCdProjekt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CiCdProjekt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D5A47EF2DAF871C0058CFB5 /* CiCdProjektTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CiCdProjektTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D5A47F92DAF871C0058CFB5 /* CiCdProjektUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CiCdProjektUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,6 +81,7 @@
 		9D5A47D92DAF87190058CFB5 = {
 			isa = PBXGroup;
 			children = (
+				9D4CC2962DAFF34E009ACEFE /* CiCdProjekt.xctestplan */,
 				9D5A47E42DAF87190058CFB5 /* CiCdProjekt */,
 				9D5A47F22DAF871C0058CFB5 /* CiCdProjektTests */,
 				9D5A47FC2DAF871C0058CFB5 /* CiCdProjektUITests */,

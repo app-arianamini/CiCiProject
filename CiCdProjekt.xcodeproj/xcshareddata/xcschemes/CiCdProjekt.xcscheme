@@ -30,7 +30,7 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <TestPlans>
          <TestPlanReference
-            reference = "container:CiCdProjekt/CiCdProjekt.xctestplan"
+            reference = "container:CiCdProjekt.xctestplan"
             default = "YES">
          </TestPlanReference>
       </TestPlans>
