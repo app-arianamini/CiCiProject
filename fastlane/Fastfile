@@ -4,7 +4,7 @@ default_platform(:ios)
 
 platform :ios do
   desc "Run unit & UI tests using xctestplan"
-  lane :run_tests do
+  lane :ci_tests do
     run_tests(
       scheme: "CiCdProjekt",
       test_plan: "CiCdProject.xctestplan",
@@ -21,7 +21,7 @@ platform :ios do
   end
 
   desc "Setup match certificates for CI"
-  lane :setup_ci do
+  lane :ci_setup do
     match(
       type: "development",
       readonly: true
